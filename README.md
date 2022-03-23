@@ -6,10 +6,10 @@ Repositorio con proyectos y actividades en Python para este taller de programaci
 
 ## Autores
 
-- **Cesar Hernandez** -[Zzar012345](https://github.com/Zzar012345)
-- **Guillermo Garrido** -[Rockking01](https://github.com/Rockking01)
-- **Francisco Rubio** - [pacoito123](https://github.com/pacoito123)
-- **Genaro Rivero-A00833638** -[Alponcho6594](https://github.com/Alponcho6594)
+- **Cesar Hernandez** - [Zzar012345](https://github.com/Zzar012345)
+- **Guillermo Garrido** - [Rockking01](https://github.com/Rockking01)
+- **Francisco Rubio (A01284502)** - [pacoito123](https://github.com/pacoito123)
+- **Genaro Rivero (A00833638)** - [Alponcho6594](https://github.com/Alponcho6594)
 
 ## Licencia
 
