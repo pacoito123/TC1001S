@@ -116,12 +116,12 @@ def move():
             point.move(course)
         else:
             options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
+                vector(20, 0),
+                vector(-20, 0),
+                vector(0, 20),
+                vector(0, -20),
             ]
-            plan = choice(options)
+            plan = choice(options) #Modificando el vector donde los fantasmas se pueden mover puedes hacer a los fantas mas rapidos/listos
             course.x = plan.x
             course.y = plan.y
 
@@ -135,7 +135,7 @@ def move():
         if abs(pacman - point) < 20:
             return
 
-    ontimer(move, 100)
+    ontimer(move, 10) #Cambio de Tiempo de movimiento donde el segundo argumento es t y a mayor t menor velocidad y visceversa
 
 def change(x, y):
     "Change pacman aim if valid."
