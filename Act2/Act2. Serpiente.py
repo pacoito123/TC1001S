@@ -39,14 +39,28 @@ def change(x, y):
 def inside(head):
     "Return True if head inside boundaries."
     return -200 < head.x < 190 and -200 < head.y < 190
+def inside_food(food):
+    return -200 < food.x < 190 and -200 < food.y < 190
+
 
 def move():
     "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
+    ##damos las distintas opciones de movimiento a la comida
+    options = [vector(10, 0),
+               vector(-10, 0),
+               vector(0, 10),
+               vector(0, -10),]
+    ##elige una opcion aleatoria de estas 4, que son arriba, abajo, izquierda y derecha
+    plan = random.choice(options)
+    ##hace el movimiento
+    food.move(plan)
     
-
-
+    ##si la comida se sale del limite es teletransportada dentro del mismo
+    if not inside_food(food):
+        food.x = randrange(-15, 15) * 10
+        food.y = randrange(-15, 15) * 10
 
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
@@ -70,10 +84,16 @@ def move():
         square(body.x, body.y, 9, body_color  )##asignamos el color aleatorio al cuerpo
         
     square(food.x, food.y, 9,food_color )##asignamos el color aleatorio a la comida
-
     
+    
+        
+
+
+
     update()
     ontimer(move, 100)
+    
+
     
     
 
