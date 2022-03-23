@@ -16,11 +16,17 @@ import random
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+##creamos una lista de colores en donde no esta el rojo
 colors = ["yellow", "pink","orange","black","blue","green"]
 
 
+
+
+##asignamos un calor aleatorio a las variables para el color del cuerpo y comida
 body_color = random.choice(colors)
 food_color = random.choice(colors)
+##para evitar que los colores sean iguales, iniciamos un ciclo while que
+##funciona mientras que ambos colores sean iguales, y termina hasta que estos son distintos
 while body_color == food_color:
     food_color = random.choice(colors)
 
@@ -38,6 +44,9 @@ def move():
     "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
+    
+
+
 
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
@@ -45,22 +54,31 @@ def move():
         return
 
     snake.append(head)
+    
 
     if head == food:
         print('Snake:', len(snake))
         food.x = randrange(-15, 15) * 10
         food.y = randrange(-15, 15) * 10
+        
     else:
         snake.pop(0)
 
     clear()
 
     for body in snake:
-        square(body.x, body.y, 9, body_color  )
+        square(body.x, body.y, 9, body_color  )##asignamos el color aleatorio al cuerpo
+        
+    square(food.x, food.y, 9,food_color )##asignamos el color aleatorio a la comida
 
-    square(food.x, food.y, 9,food_color )
+    
     update()
     ontimer(move, 100)
+    
+    
+
+    
+    
 
 setup(420, 420, 370, 0)
 hideturtle()
