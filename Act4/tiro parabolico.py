@@ -59,7 +59,7 @@ def move():
         if not inside(target):
             return
 
-    ontimer(move, 50)
+    ontimer(move, 10) #Al cambiar el segundo argumento del ontimer podemos cambiar la velocidad de todo el juego en este caso si lo reducimos lo podemos hacer mas rapido
 
 setup(420, 420, 370, 0)
 hideturtle()
