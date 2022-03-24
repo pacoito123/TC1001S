@@ -6,6 +6,7 @@ ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
 
+
 def tap(x, y):
     "Respond to screen tap."
     if not inside(ball):
@@ -61,6 +62,8 @@ def move():
             dot(20, 'blue')
             
     ontimer(move, 10) #Al cambiar el segundo argumento del ontimer podemos cambiar la velocidad de todo el juego en este caso si lo reducimos lo podemos hacer mas rapido
+    
+
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -68,4 +71,6 @@ up()
 tracer(False)
 onscreenclick(tap)
 move()
+listen()##se usa para que el programa pueda escuchar las teclas tecladas
+onkey(lambda: exit(),'e')##cuando se presione la 'e' el juego acabara y se cerrara el programa
 done()
