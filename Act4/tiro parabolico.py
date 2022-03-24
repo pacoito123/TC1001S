@@ -57,10 +57,10 @@ def move():
 
     for target in targets:
         if not inside(target):
-            goto(target.x, target.y)
+            goto(target.x, target.y)#Asi cuando el globo salga del marco se reposicionaran al inicio
             dot(20, 'blue')
             
-    ontimer(move, 10) ##Al cambiar el segundo argumento del ontimer podemos cambiar la velocidad de todo el juego en este caso si lo reducimos lo podemos hacer mas rapido
+    ontimer(move, 10) #Al cambiar el segundo argumento del ontimer podemos cambiar la velocidad de todo el juego en este caso si lo reducimos lo podemos hacer mas rapido
 
 setup(420, 420, 370, 0)
 hideturtle()
