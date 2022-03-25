@@ -1,5 +1,5 @@
 """
-Paint, for drawing shapes.
+Snake, classic arcade game.
 
 Exercises
 
@@ -9,36 +9,60 @@ Exercises
 """
 
 from turtle import *
-from random import randrange
 from freegames import square, vector
+
 import random
+
 
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-##creamos una lista de colores en donde no esta el rojo
-colors = ["yellow", "pink","orange","black","blue","green"]
 
+# creamos una lista de colores en donde no esta el rojo
+colors = ["yellow", "pink", "orange", "black", "blue", "green"]
 
-
-
-##asignamos un calor aleatorio a las variables para el color del cuerpo y comida
+# asignamos un calor aleatorio a las variables para el color del cuerpo y comida
 body_color = random.choice(colors)
 food_color = random.choice(colors)
-##para evitar que los colores sean iguales, iniciamos un ciclo while que
-##funciona mientras que ambos colores sean iguales, y termina hasta que estos son distintos
+
+# para evitar que los colores sean iguales, iniciamos un ciclo while que
+# funciona mientras que ambos colores sean iguales, y termina hasta que estos son distintos
 while body_color == food_color:
     food_color = random.choice(colors)
+
+skip_move = 0 # Contador para movimiento de la comida.
+lock_move = False # Para sólo registrar un input a la vez.
+
+
+# Función para trazar el borde del juego.
+def draw_borders():
+    up()
+    goto(-200, 200)
+    down()
+
+    for _ in range(4):
+        forward(400)
+        right(90)
 
 
 def change(x, y):
     "Change snake direction."
+    global lock_move
+    if lock_move or aim.x == -x or aim.y == -y: # Ignorar inputs de 'reversa'.
+        return
+
+    # Ajustar camino de la serpiente.
     aim.x = x
     aim.y = y
+
+    lock_move = True # Tomar sólo un input hasta que la serpiente se mueva.
+
 
 def inside(head):
     "Return True if head inside boundaries."
     return -200 < head.x < 190 and -200 < head.y < 190
+
+
 def inside_food(food):
     return -200 < food.x < 190 and -200 < food.y < 190
 
@@ -47,20 +71,29 @@ def move():
     "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
-    ##damos las distintas opciones de movimiento a la comida
-    options = [vector(10, 0),
-               vector(-10, 0),
-               vector(0, 10),
-               vector(0, -10),]
-    ##elige una opcion aleatoria de estas 4, que son arriba, abajo, izquierda y derecha
-    plan = random.choice(options)
-    ##hace el movimiento
-    food.move(plan)
-    
-    ##si la comida se sale del limite es teletransportada dentro del mismo
+
+    # Calcular movimiento de comida.
+    global skip_move
+    if skip_move < 4: # Saltar cada cuatro iteraciones (la comida se mueve a 1/4 velocidad).
+        skip_move += 1
+    else:
+        # damos las distintas opciones de movimiento a la comida
+        options = [vector(10, 0),
+                   vector(-10, 0),
+                   vector(0, 10),
+                   vector(0, -10),
+                   vector(0, 0)]
+
+        # elige una opcion aleatoria de estas 5, que son arriba, abajo, izquierda, derecha y esperar
+        plan = random.choice(options)
+
+        food.move(plan) # Mover comida de acuerdo al plan.
+        skip_move = 0 # Resetear contador.
+
+    # si la comida se sale del limite es teletransportada dentro del mismo
     if not inside_food(food):
-        food.x = randrange(-15, 15) * 10
-        food.y = randrange(-15, 15) * 10
+        food.x = random.randrange(-15, 15) * 10
+        food.y = random.randrange(-15, 15) * 10
 
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
@@ -68,37 +101,28 @@ def move():
         return
 
     snake.append(head)
-    
 
     if head == food:
-        print('Snake:', len(snake))
-        food.x = randrange(-15, 15) * 10
-        food.y = randrange(-15, 15) * 10
-        
+        print('Snake: ', len(snake))
+        food.x = random.randrange(-15, 15) * 10
+        food.y = random.randrange(-15, 15) * 10
     else:
         snake.pop(0)
 
     clear()
+    draw_borders()
 
     for body in snake:
-        square(body.x, body.y, 9, body_color  )##asignamos el color aleatorio al cuerpo
-        
-    square(food.x, food.y, 9,food_color )##asignamos el color aleatorio a la comida
-    
-    
-        
+        square(body.x, body.y, 9, body_color) # asignamos el color aleatorio al cuerpo
 
-
+    square(food.x, food.y, 9, food_color) # asignamos el color aleatorio a la comida
 
     update()
-    ontimer(move, 100)
-    
+    ontimer(move, 75)
 
-    
-    
+    global lock_move
+    lock_move = False # Permitir otro input.
 
-    
-    
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -108,5 +132,6 @@ onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
+onkey(lambda: exit(), 'q') # Salir del programa.
 move()
 done()
