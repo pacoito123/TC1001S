@@ -32,6 +32,7 @@ while body_color == food_color:
 
 skip_move = 0 # Contador para movimiento de la comida.
 lock_move = False # Para sólo registrar un input a la vez.
+pause = False # Para pausar el juego.
 
 
 # Función para trazar el borde del juego.
@@ -69,6 +70,11 @@ def inside_food(food): # Función inside que valida que la comida esté dentro d
 
 def move(): # Funcion move que genera el movimiento de la serpiente y la comida.
     "Move snake forward one segment."
+
+    if pause: # Condición para pausar el juego.
+        ontimer(move, 75) # Seguir leyendo inputs, para continuar jugando.
+        return
+
     head = snake[-1].copy()
     head.move(aim)
 
@@ -124,6 +130,11 @@ def move(): # Funcion move que genera el movimiento de la serpiente y la comida.
     lock_move = False # Permitir otro input.
 
 
+def toggle_pause(): # Función para pausar el juego o continuar jugando.
+    global pause
+    pause = not pause # Cambiar estado de pausa.
+
+
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
@@ -132,6 +143,7 @@ onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
+onkey(lambda: toggle_pause(), 'p') # Pausar/continuar jugando.
 onkey(lambda: exit(), 'q') # Salir del programa.
 move()
 done()
