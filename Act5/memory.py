@@ -2,10 +2,21 @@ from random import *
 from turtle import *
 from freegames import path
 
+import math
+
+# Se implementó esta constante para cambiar el número de casillas.
+num_tiles = 8 # TODO: Arreglar con números impares.
+
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = list(range(math.ceil(num_tiles**2 / 2.0))) * 2
 state = {'mark': None}
-hide = [True] * 64
+hide = [True] * (num_tiles**2)
+
+# Contador(es)
+counter_turtle = Turtle() # Crear instancia nueva de 'Turtle()'.
+counter = counter_last = 0 # Inicializar en 0.
+# ...
+
 
 def square(x, y):
     "Draw white square with black outline at (x, y)."
@@ -72,6 +83,29 @@ def draw():
     update()
     updateCounter() # Actualizar contador.
     ontimer(draw, 100)
+
+"""
+    Función para actualizar el contador de taps.
+
+    Se utilizó otra instancia de la clase 'Turtle()' para evitar el parpadeo del número a causa
+    de la tortuga original teniendo que ir al otro lado de la ventana para desplegar el número.
+"""
+def updateCounter(): #Funcion que genera el contador
+    global counter_last
+
+    if counter != counter_last: # Para únicamente desplegar el contador cuando haya un cambio.
+        counter_turtle.clear() # Limpiar pantalla.
+        counter_turtle.write('Taps: ' + str(counter), font=('Arial', 30, 'normal')) # Desplegar 'taps'.
+
+        counter_last = counter # Actualizar último valor del contador.
+
+
+# Configuración de tortuga para contador:
+counter_turtle.hideturtle()
+counter_turtle.up()
+counter_turtle.goto(-50 * (num_tiles / 2.0 + 1), -50 * (num_tiles / 2.0 + 1))
+counter_turtle.down()
+# ...
 
 shuffle(tiles)
 setup(420, 420, 370, 0)
