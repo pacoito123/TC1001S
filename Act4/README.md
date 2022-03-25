@@ -2,7 +2,7 @@
 
 > Herramientas computacionales: el arte de la programación
 
-Programa sencillo simular un tiro parabolico como si fuera un cañon, usando la posición en donde hace click el usuario para medir distancia y velocidad '[turtle](https://docs.python.org/3/library/turtle.html)'.
+Programa sencillo simular un tiro parabolico como si fuera un cañon, usando la posición en donde hace click el usuario para medir distancia y velocidad '[turtle, random](https://docs.python.org/3/library/turtle.html)'.
 
 ## Controladores
 
