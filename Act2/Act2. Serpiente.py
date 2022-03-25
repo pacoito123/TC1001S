@@ -45,7 +45,7 @@ def draw_borders():
         right(90)
 
 
-def change(x, y):
+def change(x, y): #Funcion change que genera el cambio del curso de la serpiente
     "Change snake direction."
     global lock_move
     if lock_move or aim.x == -x or aim.y == -y: # Ignorar inputs de 'reversa'.
@@ -58,16 +58,16 @@ def change(x, y):
     lock_move = True # Tomar sólo un input hasta que la serpiente se mueva.
 
 
-def inside(head):
+def inside(head): # Función inside que valida que la cabeza este dentro del tablero.
     "Return True if head inside boundaries."
     return -200 < head.x < 190 and -200 < head.y < 190
 
 
-def inside_food(food):
+def inside_food(food): # Función inside que valida que la comida esté dentro del tablero.
     return -200 < food.x < 190 and -200 < food.y < 190
 
 
-def move():
+def move(): # Funcion move que genera el movimiento de la serpiente y la comida.
     "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
