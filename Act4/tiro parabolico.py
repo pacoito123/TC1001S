@@ -7,7 +7,7 @@ speed = vector(0, 0)
 targets = []
 
 
-def tap(x, y):
+def tap(x, y): #Funcion tap que es la que genera el lanzamiento
     "Respond to screen tap."
     if not inside(ball):
         ball.x = -199
@@ -15,11 +15,11 @@ def tap(x, y):
         speed.x = (x + 200) / 25
         speed.y = (y + 200) / 25
 
-def inside(xy):
+def inside(xy): #Funcion inside que valida cuando la bola se sale del tablero
     "Return True if xy within screen."
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
-def draw():
+def draw(): #Funcion draw que dibuja los objetos
     "Draw ball and targets."
     clear()
 
@@ -33,7 +33,7 @@ def draw():
 
     update()
 
-def move():
+def move(): #Funcion move que genera el movimiento del proyectil y de lso globos
     "Move ball and targets."
     if randrange(40) == 0:
         y = randrange(-150, 150)
