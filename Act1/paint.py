@@ -20,7 +20,7 @@ import math
 cache = {} # Para 'memoization'.
 
 
-def line(start, end):
+def line(start, end): #Funcion Linea crea una linea del punto inicial al punto final
     """Draw line from start to end."""
     up()
     goto(start.x, start.y)
@@ -28,7 +28,7 @@ def line(start, end):
     goto(end.x, end.y)
 
 
-def square(start, end):
+def square(start, end): #Funcion cuadrado crea un cuadrado del punto inicial al punto final en los ejes x & y
     """Draw square from start to end."""
     up()
     goto(start.x, start.y)
@@ -51,7 +51,7 @@ def square(start, end):
     setheading(0)
 
 
-def cube(start, end):
+def cube(start, end): #Funcion cubo traza un cubo a traves del trazo de un cuadrado
     up()
     goto(start.x, start.y) # Comenzar a trazar en la posición inicial.
     down()
@@ -82,7 +82,7 @@ def cube(start, end):
     setheading(0)
 
 
-def circle(start, end):
+def circle(start, end): #Funcion circulo crea un circulo a traves de los puntos dados
     """Draw circle from start to end."""
     up()
 
@@ -107,7 +107,7 @@ def circle(start, end):
     Se usó el mismo concepto que en la función 'cuadrado()', solo que cada número avanza a una
     distancia diferente (Δx o Δy) dependiendo si es par o impar.
 """
-def rectangle(start, end):
+def rectangle(start, end): #Funcion rectangulo crea un rectangulo con giros en los puntos x & y
     """Draw rectangle from start to end."""
     up()
 
@@ -127,7 +127,7 @@ def rectangle(start, end):
     end_fill()
 
 
-def triangle(start, end):
+def triangle(start, end): #Funcion triangulo tiene un fucionamiento parecido a rectangulo pero con 3 lados y otro angulo
     """Draw triangle from start to end."""
     up()
     goto(start.x, start.y)
@@ -150,7 +150,7 @@ def triangle(start, end):
     setheading(0)
 
 
-def tap(x, y):
+def tap(x, y): #Funcion tap es la que crea los puntos
     """Store starting point or draw shape."""
     start = state['start']
 
@@ -163,7 +163,7 @@ def tap(x, y):
         state['start'] = None
 
 
-def store(key, value):
+def store(key, value): #Funcion store es la que almacena los valores
     """Store value in state at key."""
     state[key] = value
 
