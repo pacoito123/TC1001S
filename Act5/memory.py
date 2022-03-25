@@ -32,7 +32,7 @@ counter = counter_last = 0 # Inicializar en 0.
 # ...
 
 
-def square(x, y):
+def square(x, y): #Funcion que genera el tablero
     """Draw white square with black outline at (x, y)."""
     up()
     goto(x, y)
@@ -45,19 +45,19 @@ def square(x, y):
     end_fill()
 
 
-def index(x, y):
+def index(x, y): #Funcion indez que convierte coordenadas en casillas
     """Convert (x, y) coordinates to tiles index."""
     half = num_tiles / 2.0 # Calcular la mitad del número de casillas.
     return int((x + (50 * half)) // 50 + ((y + (50 * half)) // 50) * num_tiles)
 
 
-def xy(count):
+def xy(count): #Convierte casillas en coodenadas
     """Convert tiles count to (x, y) coordinates."""
     half = num_tiles / 2.0 # Calcular la mitad del número de casillas.
     return (count % num_tiles) * 50 - (50 * half), (count // num_tiles) * 50 - (50 * half)
 
 
-def tap(x, y):
+def tap(x, y): #Funcion que permite la respuesta al dar los clicks
     """Update mark and hidden tiles based on tap."""
     half = num_tiles / 2.0 # Calcular la mitad del número de casillas.
     if x > 50 * half or x < -50 * half or y > 50 * half or y < -50 * half:
@@ -78,7 +78,7 @@ def tap(x, y):
     counter += 1 # Aumentar contador de 'taps'.
 
 
-def draw():
+def draw(): #Funcion draw que dibuja los objetos
     """Draw image and tiles."""
     clear()
     goto(0, 0)
@@ -112,7 +112,7 @@ def draw():
     Se utilizó otra instancia de la clase 'Turtle()' para evitar el parpadeo del número a causa
     de la tortuga original teniendo que ir al otro lado de la ventana para desplegar el número.
 """
-def updateCounter():
+def updateCounter(): #Funcion que genera el contador
     global counter_last
 
     if counter != counter_last: # Para únicamente desplegar el contador cuando haya un cambio.
