@@ -31,19 +31,22 @@ while body_color == food_color:
     food_color = random.choice(colors)
 
 
-def change(x, y):
+def change(x, y): #Funcion change que genera el cambio del curso de la serpiente
     "Change snake direction."
     aim.x = x
     aim.y = y
+    
 
-def inside(head):
+def inside(head): #Funcion inside que valida que la cabeza este dentro del tablero
     "Return True if head inside boundaries."
     return -200 < head.x < 190 and -200 < head.y < 190
-def inside_food(food):
+
+
+def inside_food(food): #Funcion inside que valida que la comida este dentro del tablero
     return -200 < food.x < 190 and -200 < food.y < 190
 
 
-def move():
+def move(): #Funcion move que genera el movimiento de la serpiente y la comida
     "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
@@ -86,18 +89,8 @@ def move():
     square(food.x, food.y, 9,food_color )##asignamos el color aleatorio a la comida
     
     
-        
-
-
-
     update()
     ontimer(move, 100)
-    
-
-    
-    
-
-    
     
 
 setup(420, 420, 370, 0)
