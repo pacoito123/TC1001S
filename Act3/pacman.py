@@ -38,7 +38,7 @@ tiles = [
 ]
 #Cambio del mapa, modificando los 0's y 1's de la  matriz para crear un nuevo diseño
 
-def square(x, y):
+def square(x, y): #Funcion que crea el tablero
     "Draw square using path at (x, y)."
     path.up()
     path.goto(x, y)
@@ -51,14 +51,14 @@ def square(x, y):
 
     path.end_fill()
 
-def offset(point):
+def offset(point): #Funcion que crea el piso 
     "Return offset of point in tiles."
     x = (floor(point.x, 20) + 200) / 20
     y = (180 - floor(point.y, 20)) / 20
     index = int(x + y * 20)
     return index
 
-def valid(point):
+def valid(point): #Funcion valid que valida si es permitido el movimiento
     "Return True if point is valid in tiles."
     index = offset(point)
 
@@ -72,7 +72,7 @@ def valid(point):
 
     return point.x % 20 == 0 or point.y % 20 == 0
 
-def world():
+def world(): #Funcion world que crea el mundo interno del mapa
     "Draw world using path."
     bgcolor('black')
     path.color('blue')
@@ -90,7 +90,7 @@ def world():
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
 
-def move():
+def move(): #Funcion move que genera el movimiento de los objetos
     "Move pacman and all ghosts."
     writer.undo()
     writer.write(state['score'])
@@ -139,7 +139,7 @@ def move():
 
     ontimer(move, 10) #Cambio de Tiempo de movimiento donde el segundo argumento es t y a mayor t menor velocidad y visceversa
 
-def change(x, y):
+def change(x, y): #Funcion change que cambia el curso del pacman 
     "Change pacman aim if valid."
     if valid(pacman + vector(x, y)):
         aim.x = x
