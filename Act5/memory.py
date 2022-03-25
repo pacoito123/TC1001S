@@ -8,6 +8,9 @@ import math
 # Se implementó esta constante para cambiar el número de casillas.
 num_tiles = 8 # TODO: Arreglar con números impares.
 
+pares = Turtle()#se declaro la una variable para poder escribir en pantalla
+contador_pares = 0#contador del numero de pares
+
 car = path('car.gif')
 tiles = list(range(math.ceil(num_tiles**2 / 2.0))) * 2
 state = {'mark': None}
@@ -55,6 +58,8 @@ def tap(x, y): #Funcion que permite la respuesta al dar los clicks
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        contador_pares = contador_pares + 1#cada vez que se encuentre un par el contador aumentara uno
+        
     global counter
     counter += 1 # Aumentar contador de 'taps'.
     
@@ -99,6 +104,9 @@ def updateCounter(): #Funcion que genera el contador
         counter_turtle.write('Taps: ' + str(counter), font=('Arial', 30, 'normal')) # Desplegar 'taps'.
 
         counter_last = counter # Actualizar último valor del contador.
+    
+    if contador_pares == (num_tiles**2)/2:#cuando el contador de pares se igual a la mitad de casillas es decir los pares, nos imprimira que ya ganamos o hemos acabado
+        pares.write('has ganado el juego')
 
 
 # Configuración de tortuga para contador:
