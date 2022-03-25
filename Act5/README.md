@@ -4,7 +4,7 @@
 
 Programa sencillo de un juego de memoría, primero usando numeros para encontrar cada par, para después cambiar los colores y dar aspectos extras que también ayuden en la memoria '[turtle, random, math](https://docs.python.org/3/library/turtle.html)'.
 
-## Controles
+## Controladores
 
 *Nuevas Funciones:*
 * **[global counter]** - Mantiene un conteo de clicks
