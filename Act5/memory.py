@@ -77,7 +77,8 @@ def draw():
         x, y = xy(mark)
         up()
         goto(x + 25, y) # Se cambió de '+ 2' a '+ 25' para alinear valor al centro.
-        color('black')
+        color((tiles[mark] * 10 % 255, 128, tiles[mark] * 10 % 255))
+        print(tiles[mark] * 10 % 255, ", ", 128, ", ", tiles[mark] * 10 % 255)#se cambia para que los numeros tengan colores distintos
         write(tiles[mark], font=('Arial', 30, 'normal'), align='center') # Se añadió 'align' para alinear valor al centro.
 
     update()
@@ -106,6 +107,8 @@ counter_turtle.up()
 counter_turtle.goto(-50 * (num_tiles / 2.0 + 1), -50 * (num_tiles / 2.0 + 1))
 counter_turtle.down()
 # ...
+
+colormode(255) # Cambiar color a 0-255, en lugar de 0..1 (por default).
 
 
 shuffle(tiles)
